@@ -26,7 +26,7 @@ func (a *Actioner) Log() {
 		return
 	}
 
-	timespent, err := TimeSpent(a.Func)
+	timespent, err := Duration(a.Func)
 	if err != nil {
 		logrus.Error(err)
 		return
@@ -64,9 +64,9 @@ func End(key string) error {
 	return nil
 }
 
-// TimeSpent returns how much time occurred in the happening. It also clears
+// Duration returns how much time occurred in the happening. It also clears
 // the key.
-func TimeSpent(key string) (time.Duration, error) {
+func Duration(key string) (time.Duration, error) {
 	happening, ok := happenings[key]
 	if !ok {
 		return 0, fmt.Errorf("%q didn't happen", key)
